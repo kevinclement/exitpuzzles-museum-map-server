@@ -15,6 +15,8 @@ module.exports = class CabinetManager extends Manager {
             handlers: handlers,
             incoming:incoming,
         })
+        this.run = opts.run
+        this.forced = false
 
         // ask for status once we connect
         this.on('connected', () => {
@@ -23,6 +25,7 @@ module.exports = class CabinetManager extends Manager {
 
         // setup supported commands
         handlers['cabinet.open'] = (s,cb) => {
+            this.forced = true
             this.write('solve', err => {
                 if (err) {
                     s.ref.update({ 'error': err });
@@ -32,6 +35,7 @@ module.exports = class CabinetManager extends Manager {
         }
 
         handlers['cabinet.reboot'] = (s,cb) => {
+            this.forced = false
             this.write('reboot', err => {
                 if (err) {
                     s.ref.update({ 'error': err });
@@ -59,7 +63,11 @@ module.exports = class CabinetManager extends Manager {
                             break
 
                         case "solved": 
-                            this.solved = (p[1] === 'true')
+                            let _solved = (p[1] === 'true')
+                            if (_solved && !this.solved) {
+                                this.run.cabinetSolved(this.forced)
+                            }
+                            this.solved = _solved
                             break
                         case "lights": 
                             this.lights = (p[1] === 'true')
