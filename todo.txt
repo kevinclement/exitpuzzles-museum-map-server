@@ -30,6 +30,7 @@
   [ ] force
   [ ] timestamp
 [x] db start and ping time
+[ ] should I add ability to override per city?
 
 [ ] tempature - probably punt
 

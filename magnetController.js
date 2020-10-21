@@ -1,6 +1,11 @@
 var gpio = require('rpi-gpio');
 var Magnet = require('./magnet');
 
+const PIN_MAP = {
+    'seattle': 12,
+    'india': 16
+};
+
 module.exports = class MagnetController {
     constructor(opts) {
         this.ref = opts.ref;
@@ -15,12 +20,19 @@ module.exports = class MagnetController {
             this.magnetStateChanged(pin, value);
         });
 
-        this.setupMagnet(12, 'Seattle');
-        this.setupMagnet(16, 'India');
+        this.setupMagnet('seattle');
+        this.setupMagnet('india');
+        
+        this.ref.child('magnets').on('value', (snapshot) => {
+            let mags = snapshot.val();
+
+            this.magnets[PIN_MAP['seattle']].db = mags['seattle'];
+            this.magnets[PIN_MAP['india']].db = mags['india'];
+        });        
     }
 
-    setupMagnet(pin, location) {
-
+    setupMagnet(location) {
+        let pin = PIN_MAP[location];
         this.magnets[pin] = new Magnet(pin, location);
 
         // do initial read of pin, then setup pin for onChange, otherwise if magnet
@@ -44,6 +56,6 @@ module.exports = class MagnetController {
         //   e.g. false means there is a magnet, I actually want true to mean that
         mag.value = !newValue;
 
-        this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.value}`)
+        this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.value}, db => ${mag.db}`)
     }
 }
