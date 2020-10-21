@@ -23,6 +23,8 @@ module.exports = class MagnetController {
         this.setupMagnet('seattle');
         this.setupMagnet('india');
         
+        // TODO: I don't think I need to track this like this
+        // instead I probably want db to be tracking any overrides
         this.ref.child('magnets').on('value', (snapshot) => {
             console.log('magnets updated from db');
 
@@ -60,8 +62,9 @@ module.exports = class MagnetController {
 
         this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.value}, db => ${mag.db}`)
 
-        if (mag.value != mag.db) {
-            this.ref.child('magnets').child(mag.location).set(mag.value)
-        }
+        // update database to match
+        this.ref.child('magnets').child(mag.location).set(mag.value)
+
+        // TODO: check for solved state
     }
 }
