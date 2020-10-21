@@ -1,4 +1,5 @@
 const Paper = require('./paper/paper');
+var gpio = require('rpi-gpio');
 
 module.exports = class MapDevice {
     constructor(opts) {
@@ -11,7 +12,6 @@ module.exports = class MapDevice {
     }
 
     async load () {
-        this.logger.log(this.logPrefix + 'inside manager async load')
         await this.paper.load();
     }
 
