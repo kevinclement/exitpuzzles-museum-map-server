@@ -1,5 +1,8 @@
 const EventEmitter = require('events');
 
+// NOTE: this is kind of a one-off manager compared to rest of the fleet.  Therefore it doesn't derive from
+// Manager class, instead implements its interface, with slight copying of behavior
+
 module.exports = class Manager extends EventEmitter {
     constructor(opts) {
         super()
