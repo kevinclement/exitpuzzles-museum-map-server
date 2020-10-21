@@ -1,6 +1,6 @@
 {
   "name": "museum-map-server",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Code the run the control server software for exitpuzzles map",
   "author": "Kevin Clement <kevin.clement@gmail.com>",
   "private": true,
@@ -11,14 +11,22 @@
     "stop": "sudo systemctl stop exitpuzzles.server.service",
     "start": "sudo systemctl start exitpuzzles.server.service",
     "restart": "sudo systemctl restart exitpuzzles.server.service",
-    "status": "sudo systemctl status exitpuzzles.server.service"
+    "status": "sudo systemctl status exitpuzzles.server.service",
+    "build": "node-gyp rebuild",
+    "clean": "node-gyp clean"
   },
   "dependencies": {
+    "bindings": "^1.5.0",
     "firebase": "^6.4.0",
+    "imagejs": "0.0.9",
+    "node-addon-api": "^3.0.0",
+    "rpi-gpio": "^2.1.7",
     "serialport": "^7.1.5",
     "winston": "^3.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-gyp": "^7.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinclement/exitpuzzles-museum-map-server.git"

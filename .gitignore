@@ -1,4 +1,5 @@
 node_modules
 output.log
 logs/
+build/
 .DS_Store

@@ -3,6 +3,13 @@ let logger = new (require('./logging'))
 let run = new (require('./run'))({ logger: logger, db:fb.db })
 
 let managers = [];
+
+// TODO: confirm on real machine I need this
+// #########################################
+// To be able to build paper binding
+//   sudo apt-get install -y wiringpi
+// #########################################
+
 // TODO: put back before going live again
 // #######################################
 
