@@ -43,6 +43,6 @@ module.exports = class MagnetController {
         //   e.g. false means there is a magnet, I actually want true to mean that
         mag.value = !newValue;
 
-        console.log(`[${pin}]: ${mag.location} => ${mag.value}`);       
+        this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.value}`)
     }
 }
