@@ -1,15 +1,25 @@
-var paper = require('./paper/paper');
+const Paper = require('./paper/paper');
 
 module.exports = class MapDevice {
     constructor(opts) {
         this.ref = opts.ref;
         this.logger = opts.logger
         this.logPrefix = 'device: map: '
+        this.paper = new Paper({
+            ...opts
+        })
     }
 
     async load () {
         this.logger.log(this.logPrefix + 'inside manager async load')
-        await paper.load();
-        // paper.displayCode();
+        await this.paper.load();
+    }
+
+    displayLegend() {
+        this.paper.displayLegend();
+    }
+
+    displayCode() {
+        this.paper.displayCode();
     }
 }

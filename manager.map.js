@@ -23,8 +23,8 @@ module.exports = class Manager extends EventEmitter {
         // setup supported commands
         this.handlers['map.kkopen'] = (s,cb) => {
             console.log('inside kkopen...')
+            this.mapDevice.displayLegend();
             cb()
-
 
             // this.forced = true
             // this.write('solve', err => {
