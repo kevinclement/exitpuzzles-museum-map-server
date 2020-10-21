@@ -19,11 +19,11 @@ module.exports = class PaperDevice {
         // load the images and convert them to proper pixel arrays
         this.logger.log(this.logPrefix + 'Loading code.jpg...')
         await bitmap.readFile('./images/code.jpg');
-        this.code = pixels.getHexaPixelArray(bitmap);
+        this.code = Buffer.from(pixels.getHexaPixelArray(bitmap));
 
         this.logger.log(this.logPrefix + 'Loading legend.jpg...');
         await bitmap.readFile('./images/legend.jpg');
-        this.legend = pixels.getHexaPixelArray(bitmap);
+        this.legend = Buffer.from(pixels.getHexaPixelArray(bitmap));
 
         this.logger.log(this.logPrefix + 'Initializing e-paper display...');
         waveshare7in5Driver.dev_init();
@@ -31,10 +31,10 @@ module.exports = class PaperDevice {
     }
 
     displayCode() {
-        waveshare7in5Driver.display(Buffer.from(this.code));
+        waveshare7in5Driver.display(this.code);
      }
  
      displayLegend() {
-        waveshare7in5Driver.display(Buffer.from(this.legend));
+        waveshare7in5Driver.display(this.legend);
      }
 }
