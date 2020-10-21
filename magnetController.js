@@ -24,6 +24,8 @@ module.exports = class MagnetController {
         this.setupMagnet('india');
         
         this.ref.child('magnets').on('value', (snapshot) => {
+            console.log('magnets updated from db');
+
             let mags = snapshot.val();
 
             this.magnets[PIN_MAP['seattle']].db = mags['seattle'];
@@ -57,5 +59,9 @@ module.exports = class MagnetController {
         mag.value = !newValue;
 
         this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.value}, db => ${mag.db}`)
+
+        if (mag.value != mag.db) {
+            this.ref.child('magnets').child(mag.location).set(mag.value)
+        }
     }
 }
