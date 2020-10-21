@@ -1,30 +1,30 @@
 let fb = new (require('./firebase'))
 let logger = new (require('./logging'))
 let run = new (require('./run'))({ logger: logger, db:fb.db })
-var paper = require('./paper/paper');
+
+// TODO: confirm on real machine I need this
+// #########################################
+// To be able to build paper binding
+//   sudo apt-get install -y wiringpi
+// #########################################
 
 async function main () {
+  logger.log('map: Started ExitPuzzles Map server.');
+
   let managers = [];
 
-  // TODO: confirm on real machine I need this
-  // #########################################
-  // To be able to build paper binding
-  //   sudo apt-get install -y wiringpi
-  // #########################################
+  let mm = new (require('./manager.map'))({ logger: logger, fb: fb, run: run });
+  managers.push(mm);
 
   // TODO: put back before going live again
   // #######################################
-
   // managers.push(new (require('./manager.cabinet'))({ name: 'cabinet', logger: logger, fb: fb, run: run }))
-  managers.push(new (require('./manager.map'))({ logger: logger, fb: fb, run: run }))
 
   // might want to turn this off while doing dev, so I have a flag for it
   let ENABLE_FIREBASE_LOGS = true;
   if (ENABLE_FIREBASE_LOGS) {
       logger.enableFirebase(fb.db);
   }
-
-  logger.log('map: Started ExitPuzzles Map server.');
 
   // track firebase connect and disconnects and log them so we can see how often it happens
   let _connecting = true;
@@ -40,6 +40,9 @@ async function main () {
       }
     }
   });
+
+  // load the map device and the e-paper display
+  await mm.mapDevice.load();
 
   // listen for control operations in the db, filter only ops not completed
   fb.db.ref('museum/operations').orderByChild('completed').equalTo(null).on("child_added", function(snapshot) {
@@ -63,10 +66,6 @@ async function main () {
         ping: (new Date()).toLocaleString()
       })
   }, 30000)
-
-  // TODO: TMP
-  // await paper.load();
-  // paper.displayCode();
 }
 
 // start main process

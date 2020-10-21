@@ -1,4 +1,5 @@
 const EventEmitter = require('events');
+const MapDevice = require('./mapDevice');
 
 // NOTE: this is kind of a one-off manager compared to rest of the fleet.  Therefore it doesn't derive from
 // Manager class, instead implements its interface, with slight copying of behavior
@@ -14,6 +15,10 @@ module.exports = class Manager extends EventEmitter {
         this.logPrefix = 'handler: ' + this.name + ': '
         this.created = (new Date()).getTime()
         this.handlers = {};
+        this.mapDevice = new MapDevice({ 
+            ...opts,
+            ref: this.ref,
+        });
 
         // setup supported commands
         this.handlers['map.kkopen'] = (s,cb) => {
