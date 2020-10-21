@@ -1,5 +1,4 @@
 const Paper = require('./paper/paper');
-var gpio = require('rpi-gpio');
 
 module.exports = class MapDevice {
     constructor(opts) {
