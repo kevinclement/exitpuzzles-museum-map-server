@@ -29,8 +29,10 @@
   [ ] finished
   [ ] force
   [ ] timestamp
-[x] db start and ping time
 [ ] should I add ability to override per city?
+[ ] force solve
+[x] db start and ping time
+
 
 [ ] tempature - probably punt
 

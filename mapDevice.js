@@ -5,9 +5,12 @@ module.exports = class MapDevice {
         this.ref = opts.ref;
         this.logger = opts.logger
         this.logPrefix = 'device: map: '
+
         this.paper = new Paper({
             ...opts
         })
+
+        
     }
 
     async load () {
