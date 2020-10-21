@@ -16,6 +16,7 @@ module.exports = class MagnetController {
         });
 
         this.setupMagnet(12, 'Seattle');
+        this.setupMagnet(16, 'India');
     }
 
     setupMagnet(pin, location) {
