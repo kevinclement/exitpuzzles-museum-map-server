@@ -1,0 +1,44 @@
+// python logic copy
+[ ] magnet object
+  [ ] location
+  [ ] pin
+  [ ] state - boolean
+[ ] magnet state - gpio
+  [ ] update db
+[ ] overall state
+  [ ] file_name
+  [ ] display_last_updated
+  [ ] display_needs_update - False
+  [ ] is_solved - False
+  [ ] magnets array of objects
+
+  [ ] some helper functions, see state.py
+[ ] main loop
+[ ] success state
+  [ ] update db
+[ ] reset state
+  [ ] time to wait - 10s
+  [ ] update db
+[ ] audio
+[ ] db info
+  [ ] magnets
+  [ ] image
+  [ ] solved
+  [ ] force
+[ ] run state
+  [ ] finished
+  [ ] force
+  [ ] timestamp
+[x] db start and ping time
+
+[ ] tempature - probably punt
+
+[ ] what needs to be updated since I changed server from pedestal to map
+  [ ] should I just have both statuses?
+
+// changes due to wire mapping?
+# Pin definition
+RST_PIN         = 23
+DC_PIN          = 25
+CS_PIN          = 8
+BUSY_PIN        = 24
