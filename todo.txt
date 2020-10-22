@@ -31,6 +31,8 @@
   [ ] timestamp
 [ ] should I add ability to override per city?
 [ ] force solve
+[ ] handle reset from website
+  [ ] needs to clear state in a bunch of places?
 [x] db start and ping time
 
 
