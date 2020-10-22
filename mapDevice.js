@@ -10,7 +10,18 @@ module.exports = class MapDevice {
             ...opts
         })
 
-        
+        this.magnets = new (require('./magnetController'))({ 
+            ...opts
+        })
+
+        this.magnets.on('solved', () => {
+            console.log(`solved: ${this.magnets.solved}`)
+        })
+
+        this.magnets.on('unsolved', () => {
+            console.log(`unsolved: ${this.magnets.solved}`)
+        })
+
     }
 
     async load () {
