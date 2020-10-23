@@ -59,7 +59,8 @@ module.exports = class MapDevice {
     }
 
     reset() {
-        this.displayLegend();
         this.resetTimer = null;
+        this.displayLegend();
+        this.magnets.reset();
     }
 }

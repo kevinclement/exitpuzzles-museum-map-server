@@ -14,10 +14,13 @@
 [ ] should I add ability to override per city?
 [ ] should I add ability to trigger audio only, or blink?  ask kyle
 
-[ ] ask kyle about timeout behavior
-  [ ] do we want a change to that?
+[ ] asks for kyle:    
+  [ ] timeout behavior
+    do we want a change to that?
     right now its 10s of unsolved
     also allows for solve and then unsolve and then solve again without some sore of global reset
+  [ ] reboot/reset behavios
+    if all magnets are in place and you reboot it, it will blink and do the solve.  is this desired?  it was more work to do it
 
 
 [ ] tempature - probably punt
