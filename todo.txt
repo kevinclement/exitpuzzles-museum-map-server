@@ -1,24 +1,22 @@
-// python logic copy
-[ ] magnet object
-  [ ] location
-  [ ] pin
-  [ ] state - boolean
-[ ] magnet state - gpio
-  [ ] update db
+[x] magnet object
+  [x] location
+  [x] pin
+  [x] state
+[x] magnet state - gpio
+  [x] update db
 [ ] overall state
-  [ ] file_name
-  [ ] display_last_updated
-  [ ] display_needs_update - False
-  [ ] is_solved - False
-  [ ] magnets array of objects
-
-  [ ] some helper functions, see state.py
-[ ] main loop
-[ ] success state
-  [ ] update db
-[ ] reset state
-  [ ] time to wait - 10s
-  [ ] update db
+  [x] image: 'images/FINAL.bmp'
+    [x] why - at one point thought I could just change image with it, but 
+      didn't end up using it like that so removed hack and just have a string
+  [x] is_solved
+  [x] magnets array of objects
+[x] success state
+  [x] update db
+[x] reset picture after timeout
+  [x] time to wait - 10s
+  [x] update db
+[ ] handle reset from website
+  [ ] needs to clear state in a bunch of places?  
 [ ] audio
 [ ] db info
   [ ] magnets
@@ -31,8 +29,10 @@
   [ ] timestamp
 [ ] should I add ability to override per city?
 [ ] force solve
-[ ] handle reset from website
-  [ ] needs to clear state in a bunch of places?
+[ ] ask kyle about timeout behavior
+  [ ] do we want a change to that?
+    right now its 10s of unsolved
+    also allows for solve and then unsolve and then solve again without some sore of global reset
 [x] db start and ping time
 
 

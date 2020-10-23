@@ -89,21 +89,19 @@ module.exports = class MagnetController extends EventEmitter {
 
         Object.entries(this.magnets).forEach(([pin, mag]) => {
             allSolved &= mag.state;
-            console.log(`checking mag: ${pin} ${mag.location} ${mag.state}`)
         });
 
         // much more terse way to represent this, but prefer clarity
         if (this.solved && !allSolved) {
             this.solved = false;
-            this.emit('unsolved');
-
             this.ref.update({ solved: false });
+            this.emit('unsolved');
         }
         
         if (!this.solved && allSolved) {
             this.solved = true;
-            this.emit('solved');
             this.ref.update({ solved: true });
+            this.emit('solved');
         }
     }
 }

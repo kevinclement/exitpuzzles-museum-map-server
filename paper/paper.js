@@ -31,10 +31,22 @@ module.exports = class PaperDevice {
     }
 
     displayCode() {
-        waveshare7in5Driver.display(this.code);
+        this.ref.update({ image: 'code' });
+
+        // micro-opt: let db update happen before triggering paper update since
+        // it kind of hangs the device.  Ideally this would be a fork or something better
+        setTimeout(() => {
+            waveshare7in5Driver.display(this.code);    
+        }, 0);
      }
  
      displayLegend() {
-        waveshare7in5Driver.display(this.legend);
+        this.ref.update({ image: 'legend' });
+
+        // micro-opt: let db update happen before triggering paper update since
+        // it kind of hangs the device.  Ideally this would be a fork or something better
+        setTimeout(() => {
+            waveshare7in5Driver.display(this.legend);
+        }, 0);
      }
 }
