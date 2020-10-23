@@ -22,7 +22,7 @@ module.exports = class MapDevice {
         // TODO: should we display legend on boot?
 
         this.magnets.on('solved', () => {           
-            console.log(`### solved: ${this.magnets.solved}`)
+            this.logger.log(`${this.logPrefix} SOLVED from magnets.`);
 
             // if we we going to reset the display but then saw a solve,
             // cancel the timer, no need to refresh display since it should be solved
@@ -36,7 +36,7 @@ module.exports = class MapDevice {
         })
 
         this.magnets.on('unsolved', () => {
-            console.log(`### unsolved: ${this.magnets.solved}`)
+            this.logger.log(`${this.logPrefix} UNSOLVED from magnets.`);
 
             this.resetTimer = setTimeout(()=> {
                 this.logger.log(`${this.logPrefix} resetting map after unsolved timeout.`);

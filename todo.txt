@@ -23,7 +23,7 @@
     if all magnets are in place and you reboot it, it will blink and do the solve.  is this desired?  it was more work to do it
 
 
-[ ] tempature - probably punt
+[ ] temperature - probably punt
 
 [ ] what needs to be updated since I changed server from pedestal to map
   [ ] should I just have both statuses?
