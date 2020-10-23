@@ -17,9 +17,11 @@ module.exports = class MapDevice {
             ...opts
         })
 
+        this.audio = new (require('./audio'))({ logger: opts.logger })
+
         // TODO: should we display legend on boot?
 
-        this.magnets.on('solved', () => {
+        this.magnets.on('solved', () => {           
             console.log(`### solved: ${this.magnets.solved}`)
 
             // if we we going to reset the display but then saw a solve,
@@ -28,6 +30,7 @@ module.exports = class MapDevice {
                 this.logger.log(`${this.logPrefix} canceling reset timer since re-solved.`);
                 clearTimeout(this.resetTimer);
             } else {
+                this.audio.play('sharpwin_combo.wav');
                 this.displayCode();
             }           
         })
