@@ -34,6 +34,12 @@ module.exports = class Manager extends EventEmitter {
             //     cb()
             // });
         }
+
+        this.handlers['map.reboot'] = (s,cb) => {
+            this.logger.log(this.logPrefix + 'resetting device state.')
+            this.mapDevice.reset();
+            cb()
+        }
     }
 
     handle(snapshot) {

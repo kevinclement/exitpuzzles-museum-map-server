@@ -1,5 +1,4 @@
 
-[ ] audio 
 [ ] handle reset from website
   [ ] needs to clear state in a bunch of places?  
 [ ] handle force from website
@@ -10,7 +9,10 @@
   [ ] finished
   [ ] force
   [ ] timestamp
+[ ] what changes do I need in reset dialog in webapp?
+
 [ ] should I add ability to override per city?
+[ ] should I add ability to trigger audio only, or blink?  ask kyle
 
 [ ] ask kyle about timeout behavior
   [ ] do we want a change to that?
@@ -55,3 +57,4 @@ BUSY_PIN        = 24
   [x] image
   [x] solved
   [x] force
+[x] audio 

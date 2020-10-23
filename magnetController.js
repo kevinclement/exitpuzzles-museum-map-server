@@ -13,7 +13,7 @@ var Magnet = require('./magnet');
 // };
 
 const PIN_MAP = {
-    'fiji':       19,
+    // 'fiji':       19,
     'seattle':    20
 };
 
@@ -25,6 +25,7 @@ module.exports = class MagnetController extends EventEmitter {
         this.logPrefix = 'magnet: ';
         
         this.magnets = {};
+        this.magnetsSetup = 0;
         this.solved = false;
 
         gpio.setMode(gpio.MODE_BCM);
@@ -34,10 +35,10 @@ module.exports = class MagnetController extends EventEmitter {
         });
 
         // setup all the magnets
-        Object.entries(PIN_MAP).forEach(([key, value]) => {
-            this.setupMagnet(key);
-         });
-        
+        Object.entries(PIN_MAP).forEach(([location, pin]) => {
+            this.setupMagnet(location);
+        });
+       
         // TODO: I don't think I need to track this like this
         // instead I probably want db to be tracking any overrides
         // this.ref.child('magnets').on('value', (snapshot) => {
@@ -54,17 +55,14 @@ module.exports = class MagnetController extends EventEmitter {
         let pin = PIN_MAP[location];
         this.magnets[pin] = new Magnet(pin, location);
 
-        // do initial read of pin, then setup pin for onChange, otherwise if magnet
-        // is in place when you boot it will never see the real value without it being changed
-        gpio.setup(pin, gpio.DIR_IN, (err) => {
-            if (err) throw err;
+        gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH, () => {
+            this.magnetsSetup++;
 
-            gpio.read(pin, (err, value) => {
-                if (err) throw err;
-
-                this.magnetStateChanged(pin, value);
-                gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
-            });
+            // once we've setup all the magnets, do an initial read in
+            // since onChange won't fire initially
+            if (this.magnetsSetup == Object.entries(PIN_MAP).length) {
+                this.readAllCurrentMagnets();
+            }
         });
     }
 
@@ -82,6 +80,27 @@ module.exports = class MagnetController extends EventEmitter {
 
         // check for solved state
         this.checkForSolvedState();
+    }
+
+    readAllCurrentMagnets() {
+        Object.entries(this.magnets).forEach(([pin, mag]) => {
+            gpio.read(pin, (err, value) => {
+                if (err) throw err;
+    
+                if (mag.state != !value) {
+                    this.magnetStateChanged(pin, value);
+                }
+            });
+        });       
+    }
+
+    reset() {
+        Object.entries(this.magnets).forEach(([pin, mag]) => {
+            mag.state = false;
+        });
+        this.solved = false;
+
+        this.readAllCurrentMagnets();
     }
 
     checkForSolvedState() {
