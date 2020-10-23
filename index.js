@@ -1,5 +1,6 @@
 let fb = new (require('./firebase'))
 let logger = new (require('./logging'))
+let audio = new (require('./audio'))({ logger: logger })
 let run = new (require('./run'))({ logger: logger, db:fb.db })
 
 // TODO: confirm on real machine I need this
