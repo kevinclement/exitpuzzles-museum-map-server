@@ -32,18 +32,15 @@ module.exports = class Audio {
 
     dequeueAndPlay(cb) {
 
-       
-        // let fullFile = '/home/pi/code/exitpuzzles-server/audio/' + fileName
-        // this.logger.log('audio: playing \'' + fileName + '\'...')
-        // this.playing = true
-        // player.play(fullFile, (err) => {
-
         let fileName = this.queue.shift()
         let fullFile = path.join(__dirname, 'audio', fileName); 
 
         this.logger.log('audio: playing \'' + fileName + '\'...')
         this.playing = true
-        player.play(fullFile, { aplay: ['--quiet' ] }, (err) => {
+
+        // not sure I can tell difference between having and not having
+        // quiet param, but for now copying straight from py implementation
+        player.play(fullFile, { aplay: ['--quiet'] }, (err) => {
             if (err) {
                 this.logger.logger.error('audio: Exception: ' + err)
             } else {
