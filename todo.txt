@@ -1,39 +1,21 @@
-[x] magnet object
-  [x] location
-  [x] pin
-  [x] state
-[x] magnet state - gpio
-  [x] update db
-[ ] overall state
-  [x] image: 'images/FINAL.bmp'
-    [x] why - at one point thought I could just change image with it, but 
-      didn't end up using it like that so removed hack and just have a string
-  [x] is_solved
-  [x] magnets array of objects
-[x] success state
-  [x] update db
-[x] reset picture after timeout
-  [x] time to wait - 10s
-  [x] update db
+
+[ ] audio 
 [ ] handle reset from website
   [ ] needs to clear state in a bunch of places?  
-[ ] audio
-[ ] db info
-  [ ] magnets
-  [ ] image
-  [ ] solved
-  [ ] force
+[ ] handle force from website
+  [ ] hookup js handler
+  [ ] update db
+
 [ ] run state
   [ ] finished
   [ ] force
   [ ] timestamp
 [ ] should I add ability to override per city?
-[ ] force solve
+
 [ ] ask kyle about timeout behavior
   [ ] do we want a change to that?
     right now its 10s of unsolved
     also allows for solve and then unsolve and then solve again without some sore of global reset
-[x] db start and ping time
 
 
 [ ] tempature - probably punt
@@ -47,3 +29,29 @@ RST_PIN         = 23
 DC_PIN          = 25
 CS_PIN          = 8
 BUSY_PIN        = 24
+
+
+// -----------------------------------------------
+[x] db start and ping time
+[x] magnet object
+  [x] location
+  [x] pin
+  [x] state
+[x] magnet state - gpio
+  [x] update db
+[x] overall state
+  [x] image: 'images/FINAL.bmp'
+    [x] why - at one point thought I could just change image with it, but 
+      didn't end up using it like that so removed hack and just have a string
+  [x] is_solved
+  [x] magnets array of objects
+[x] success state
+  [x] update db
+[x] reset picture after timeout
+  [x] time to wait - 10s
+  [x] update db
+[x] db info
+  [x] magnets
+  [x] image
+  [x] solved
+  [x] force
