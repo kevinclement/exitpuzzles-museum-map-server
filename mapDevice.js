@@ -7,7 +7,9 @@ module.exports = class MapDevice {
         this.ref = opts.ref;
         this.logger = opts.logger
         this.logPrefix = 'device: map:'
+        
         this.resetTimer = null;
+        this.force = false;
 
         this.paper = new Paper({
             ...opts
@@ -30,19 +32,20 @@ module.exports = class MapDevice {
                 this.logger.log(`${this.logPrefix} canceling reset timer since re-solved.`);
                 clearTimeout(this.resetTimer);
             } else {
-                this.audio.play('sharpwin_combo.wav');
-                this.displayCode();
+                this.solved();
             }           
         })
 
         this.magnets.on('unsolved', () => {
             this.logger.log(`${this.logPrefix} UNSOLVED from magnets.`);
 
-            this.resetTimer = setTimeout(()=> {
-                this.logger.log(`${this.logPrefix} resetting map after unsolved timeout.`);
-                this.reset();
-            }, 1000 * TIME_TO_WAIT_RESET_S);
-
+            // only schedule a reset of the display if there wasn't a force
+            if (!this.force) {
+                this.resetTimer = setTimeout(()=> {
+                    this.logger.log(`${this.logPrefix} resetting map after unsolved timeout.`);
+                    this.reset();
+                }, 1000 * TIME_TO_WAIT_RESET_S);
+            }
         })
     }
 
@@ -58,7 +61,20 @@ module.exports = class MapDevice {
         this.paper.displayCode();
     }
 
+    solved() {
+        this.audio.play('sharpwin_combo.wav');
+        this.displayCode();
+    }
+
+    forceSolve() {
+        this.logger.log(this.logPrefix + 'forcing map solved.');
+        this.force = true;
+        this.solved();
+    }
+
     reset() {
+        this.logger.log(this.logPrefix + 'resetting device state.')
+        this.force = false;
         this.resetTimer = null;
         this.displayLegend();
         this.magnets.reset();

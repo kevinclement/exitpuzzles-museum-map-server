@@ -21,23 +21,13 @@ module.exports = class Manager extends EventEmitter {
         });
 
         // setup supported commands
-        this.handlers['map.kkopen'] = (s,cb) => {
-            console.log('inside kkopen...')
-            this.mapDevice.displayCode();
+        this.handlers['map.reboot'] = (s,cb) => {
+            this.mapDevice.reset();
             cb()
-
-            // this.forced = true
-            // this.write('solve', err => {
-            //     if (err) {
-            //         s.ref.update({ 'error': err });
-            //     }
-            //     cb()
-            // });
         }
 
-        this.handlers['map.reboot'] = (s,cb) => {
-            this.logger.log(this.logPrefix + 'resetting device state.')
-            this.mapDevice.reset();
+        this.handlers['map.force'] = (s,cb) => {
+            this.mapDevice.forceSolve();
             cb()
         }
     }

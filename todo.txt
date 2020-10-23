@@ -1,9 +1,9 @@
 
-[ ] handle reset from website
-  [ ] needs to clear state in a bunch of places?  
 [ ] handle force from website
   [ ] hookup js handler
   [ ] update db
+
+[ ] cleanup force from web ui
 
 [ ] run state
   [ ] finished
@@ -61,3 +61,5 @@ BUSY_PIN        = 24
   [x] solved
   [x] force
 [x] audio 
+[x] handle reset from website
+  [x] needs to clear state in a bunch of places?  
