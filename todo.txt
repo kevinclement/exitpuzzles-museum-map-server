@@ -1,7 +1,4 @@
 
-[ ] what needs to be updated since I changed server from pedestal to map
-  [ ] should I just have both statuses?
-
 [ ] manual test
   [ ] mag on/off
   [ ] all on, then solve
@@ -72,3 +69,5 @@ BUSY_PIN        = 24
   [x] timestamp
 [x] what changes do I need in reset dialog in webapp?
   prob force related
+[x] what needs to be updated since I changed server from pedestal to map
+  - turns out app was driven by map status, which python used, so changing to map should be the same

@@ -54,7 +54,6 @@ async function main () {
    });
 
   // update started time and set a ping timer
-  // TODO: was pedestal, do I need both?  what else do I have to fix from changing this?
   fb.db.ref('museum/status/map').update({
       started: (new Date()).toLocaleString(),
       ping: (new Date()).toLocaleString()
