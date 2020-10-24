@@ -2,20 +2,20 @@ var gpio = require('rpi-gpio');
 const EventEmitter = require('events');
 var Magnet = require('./magnet');
 
-// const PIN_MAP = {
-//     'spain':      12,
-//     'india':      16,
-//     'fiji':       19,
-//     'madagascar': 13,
-//     'alaska':     26,
-//     'seattle':    20,
-//     'argentina':  21
-// };
-
 const PIN_MAP = {
+    'spain':      12,
+    'india':      16,
     'fiji':       19,
-    'seattle':    20
+    'madagascar': 13,
+    'alaska':     26,
+    'seattle':    20,
+    'argentina':  21
 };
+
+// const PIN_MAP = {
+//     'fiji':       19,
+//     'seattle':    20
+// };
 
 module.exports = class MagnetController extends EventEmitter {
     constructor(opts) {

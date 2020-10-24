@@ -1,7 +1,7 @@
 
-[ ] add overrides to production db
-[ ] add all pins/locations back
-[ ] switch firebase to production
+[x] add overrides to production db
+[x] add all pins/locations back
+[x] switch firebase to production
 
 [ ] manual test
   [ ] mag on/off
@@ -11,6 +11,9 @@
   [ ] force
   [ ] reset dialog resets the device
   [ ] run reporting
+
+[ ] turn off system start of python service
+  [ ] maybe rename source folder?
 
 [ ] fix typing override timer problem with dashboard
 
