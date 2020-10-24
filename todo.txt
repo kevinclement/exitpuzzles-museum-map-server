@@ -14,8 +14,6 @@
 
 [ ] fix typing override timer problem with dashboard
 
-[ ] should I add ability to override per city?
-
 [ ] temperature - probably punt
 
 // changes due to wire mapping?
@@ -76,3 +74,4 @@ BUSY_PIN        = 24
   prob force related
 [x] what needs to be updated since I changed server from pedestal to map
   - turns out app was driven by map status, which python used, so changing to map should be the same
+[x] should I add ability to override per city?
