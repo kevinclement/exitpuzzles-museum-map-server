@@ -43,8 +43,6 @@ module.exports = class Audio {
         player.play(fullFile, { aplay: ['--quiet'] }, (err) => {
             if (err) {
                 this.logger.logger.error('audio: Exception: ' + err)
-            } else {
-                this.logger.log('audio: played.')
             }
 
             this.playing = false

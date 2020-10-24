@@ -10,6 +10,7 @@ module.exports = class PaperDevice {
         this.ref = opts.ref;
         this.logger = opts.logger;
         this.logPrefix = 'device: paper: ';
+        this.curImg = '';
 
         this.code = [];
         this.legend = [];
@@ -32,6 +33,12 @@ module.exports = class PaperDevice {
 
     displayCode() {
         this.ref.update({ image: 'code' });
+        
+        if (this.curImg == 'code') {
+            this.logger.log(this.logPrefix + 'code already displayed.  Ignoring.');
+            return;
+        }        
+        this.curImg = 'code';
 
         // micro-opt: let db update happen before triggering paper update since
         // it kind of hangs the device.  Ideally this would be a fork or something better
@@ -42,6 +49,12 @@ module.exports = class PaperDevice {
  
      displayLegend() {
         this.ref.update({ image: 'legend' });
+
+        if (this.curImg == 'legend') {
+            this.logger.log(this.logPrefix + 'legend already displayed.  Ignoring.');
+            return;
+        }        
+        this.curImg = 'legend';
 
         // micro-opt: let db update happen before triggering paper update since
         // it kind of hangs the device.  Ideally this would be a fork or something better
