@@ -2,12 +2,6 @@ let fb = new (require('./firebase'))
 let logger = new (require('./logging'))
 let run = new (require('./run'))({ logger: logger, db:fb.db })
 
-// TODO: confirm on real machine I need this
-// #########################################
-// To be able to build paper binding
-//   sudo apt-get install -y wiringpi
-// #########################################
-
 async function main () {
   logger.log('map: Started ExitPuzzles Map server.');
 
@@ -15,10 +9,7 @@ async function main () {
 
   let mm = new (require('./manager.map'))({ logger: logger, fb: fb, run: run });
   managers.push(mm);
-
-  // TODO: put back before going live again
-  // #######################################
-  // managers.push(new (require('./manager.cabinet'))({ name: 'cabinet', logger: logger, fb: fb, run: run }))
+  managers.push(new (require('./manager.cabinet'))({ name: 'cabinet', logger: logger, fb: fb, run: run }))
 
   // might want to turn this off while doing dev, so I have a flag for it
   let ENABLE_FIREBASE_LOGS = true;

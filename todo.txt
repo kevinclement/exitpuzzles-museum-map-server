@@ -1,32 +1,18 @@
+[ ] when I did a force solve for map, got a callback error in console
 
-[x] add overrides to production db
-[x] add all pins/locations back
-[x] switch firebase to production
-
-[ ] manual test
-  [ ] mag on/off
-  [ ] all on, then solve
-  [ ] once solved, one off goes to unsolved
-  [ ] reboot/reset via webapp
-  [ ] force
-  [ ] reset dialog resets the device
-  [ ] run reporting
-
-[ ] turn back on cabinet handler
 [ ] turn off system start of python service
   [ ] maybe rename source folder?
+[ ] check in to master for service
+[ ] refresh main service
+[ ] checkin master webapp
+
+[ ] nit: cleanup old ops still hanging out in db
+[ ] nit: move legend image up?
+[ ] nit: image swap is faster, need to adjust sound?
 
 [ ] fix typing override timer problem with dashboard
 
 [ ] temperature - probably punt
-
-// changes due to wire mapping?
-# Pin definition
-RST_PIN         = 23
-DC_PIN          = 25
-CS_PIN          = 8
-BUSY_PIN        = 24
-
 
 // -----------------------------------------------
 [x] db start and ping time
@@ -79,3 +65,15 @@ BUSY_PIN        = 24
 [x] what needs to be updated since I changed server from pedestal to map
   - turns out app was driven by map status, which python used, so changing to map should be the same
 [x] should I add ability to override per city?
+[x] add overrides to production db
+[x] add all pins/locations back
+[x] switch firebase to production
+[x] manual test
+  [x] mag on/off
+  [x] all on, then solve
+  [x] once solved, one off goes to unsolved
+  [x] reboot/reset via webapp
+  [x] force
+  [x] run reporting
+  [x] reset dialog resets the device
+[x] turn back on cabinet handler
