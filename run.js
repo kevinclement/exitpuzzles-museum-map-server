@@ -16,10 +16,12 @@ module.exports = class Runs {
                 }
             })
 
-            if (latest && latest != this.runTime) {
-                this.logger.log(this.logPrefix + `using ${latest} for run analytics.`)
-                this.run = opts.db.ref('museum/runs').child(latest)
-                this.runTime = latest;
+            if (latest) {
+                if (latest != this.runTime) {
+                    this.logger.log(this.logPrefix + `using ${latest} for run analytics.`)
+                    this.run = opts.db.ref('museum/runs').child(latest)
+                    this.runTime = latest;
+                }
             } else {
                 this.run = undefined;
                 this.runTime = undefined;
