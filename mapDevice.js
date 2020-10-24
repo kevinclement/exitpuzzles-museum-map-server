@@ -5,8 +5,9 @@ const TIME_TO_WAIT_RESET_S = 10;
 module.exports = class MapDevice {
     constructor(opts) {
         this.ref = opts.ref;
-        this.logger = opts.logger
-        this.logPrefix = 'device: map:'
+        this.logger = opts.logger;
+        this.run = opts.run;
+        this.logPrefix = 'device: map:';
         
         this.resetTimer = null;
         this.force = false;
@@ -20,8 +21,6 @@ module.exports = class MapDevice {
         })
 
         this.audio = new (require('./audio'))({ logger: opts.logger })
-
-        // TODO: should we display legend on boot?
 
         this.magnets.on('solved', () => {           
             this.logger.log(`${this.logPrefix} SOLVED from magnets.`);
@@ -64,16 +63,17 @@ module.exports = class MapDevice {
     solved() {
         this.audio.play('sharpwin_combo.wav');
         this.displayCode();
+        this.run.mapSolved(this.force);
     }
 
     forceSolve() {
-        this.logger.log(this.logPrefix + 'forcing map solved.');
+        this.logger.log(this.logPrefix + ' forcing map solved.');
         this.force = true;
         this.solved();
     }
 
     reset() {
-        this.logger.log(this.logPrefix + 'resetting device state.')
+        this.logger.log(this.logPrefix + ' resetting device state.')
         this.force = false;
         this.resetTimer = null;
         this.displayLegend();

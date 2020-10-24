@@ -9,7 +9,6 @@ module.exports = class Manager extends EventEmitter {
         super()
         this.logger = opts.logger
         this.ref = opts.fb.db.ref('museum/devices/map')
-        this.run = opts.run
 
         this.name = "map"
         this.logPrefix = 'handler: ' + this.name + ': '

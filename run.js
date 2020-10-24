@@ -2,6 +2,7 @@ module.exports = class Runs {
     constructor(opts) {
         this.runsRef = opts.db.ref('museum/runs')
         this.run = undefined
+        this.runTime = undefined;
         this.logger = opts.logger
         this.logPrefix =  'run: '
 
@@ -15,11 +16,13 @@ module.exports = class Runs {
                 }
             })
 
-            if (latest) {
+            if (latest && latest != this.runTime) {
                 this.logger.log(this.logPrefix + `using ${latest} for run analytics.`)
                 this.run = opts.db.ref('museum/runs').child(latest)
+                this.runTime = latest;
             } else {
-                this.run = undefined
+                this.run = undefined;
+                this.runTime = undefined;
             }
         })
     }
@@ -33,5 +36,17 @@ module.exports = class Runs {
         } else {
             this.logger.log(this.logPrefix + 'WARN: cabinet: run not defined, not updating analytics')
         }
+    }
+
+    mapSolved(forced) {
+        if (!this.run) {
+            this.logger.log(this.logPrefix + 'WARN: map: run not defined, not updating analytics')
+            return;
+        } 
+
+        this.run.child("events/map").update({
+            timestamp: (new Date()).toLocaleString(),
+            force: forced ? true : false
+        })
     }
 }

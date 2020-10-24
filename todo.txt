@@ -1,27 +1,8 @@
 
-[ ] handle force from website
-  [ ] hookup js handler
-  [ ] update db
-
-[ ] cleanup force from web ui
-
-[ ] run state
-  [ ] finished
-  [ ] force
-  [ ] timestamp
 [ ] what changes do I need in reset dialog in webapp?
+  prob force related
 
 [ ] should I add ability to override per city?
-[ ] should I add ability to trigger audio only, or blink?  ask kyle
-
-[ ] asks for kyle:    
-  [ ] timeout behavior
-    do we want a change to that?
-    right now its 10s of unsolved
-    also allows for solve and then unsolve and then solve again without some sore of global reset
-  [ ] reboot/reset behavios
-    if all magnets are in place and you reboot it, it will blink and do the solve.  is this desired?  it was more work to do it
-
 
 [ ] temperature - probably punt
 
@@ -63,3 +44,22 @@ BUSY_PIN        = 24
 [x] audio 
 [x] handle reset from website
   [x] needs to clear state in a bunch of places?  
+[x] handle force from website
+  [x] hookup js handler
+  [\] update db
+[x] cleanup force from web ui
+[x] asks for kyle:    
+  [x] timeout behavior
+    do we want a change to that?
+    right now its 10s of unsolved
+    also allows for solve and then unsolve and then solve again without some sore of global reset
+    - confirmed from kyle its good as is
+  [x] reboot/reset behaviors
+    if all magnets are in place and you reboot it, it will blink and do the solve.  is this desired?  it was more work to do it
+      yes, confirmed its desirable
+  [x] should I add ability to trigger audio only, or blink?  ask kyle
+    [x] hes fine with it like this
+[x] run state
+  [x] finished
+  [x] force
+  [x] timestamp
