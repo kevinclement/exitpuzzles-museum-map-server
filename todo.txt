@@ -1,13 +1,20 @@
 
-[ ] what changes do I need in reset dialog in webapp?
-  prob force related
+[ ] what needs to be updated since I changed server from pedestal to map
+  [ ] should I just have both statuses?
+
+[ ] manual test
+  [ ] mag on/off
+  [ ] all on, then solve
+  [ ] once solved, one off goes to unsolved
+  [ ] reboot/reset via webapp
+  [ ] force
+  [ ] reset dialog resets the device
+
+[ ] fix typing override timer problem with dashboard
 
 [ ] should I add ability to override per city?
 
 [ ] temperature - probably punt
-
-[ ] what needs to be updated since I changed server from pedestal to map
-  [ ] should I just have both statuses?
 
 // changes due to wire mapping?
 # Pin definition
@@ -63,3 +70,5 @@ BUSY_PIN        = 24
   [x] finished
   [x] force
   [x] timestamp
+[x] what changes do I need in reset dialog in webapp?
+  prob force related
