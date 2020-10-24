@@ -5,6 +5,6 @@ module.exports = class Magnet {
         this.pin = pin;
         this.location = location;
         this.state = false;
-        this.db = false;
+        this.override = false;
     }
 }

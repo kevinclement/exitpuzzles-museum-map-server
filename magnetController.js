@@ -13,7 +13,7 @@ var Magnet = require('./magnet');
 // };
 
 const PIN_MAP = {
-    // 'fiji':       19,
+    'fiji':       19,
     'seattle':    20
 };
 
@@ -39,16 +39,16 @@ module.exports = class MagnetController extends EventEmitter {
             this.setupMagnet(location);
         });
        
-        // TODO: I don't think I need to track this like this
-        // instead I probably want db to be tracking any overrides
-        // this.ref.child('magnets').on('value', (snapshot) => {
-        //     console.log('magnets updated from db');
+        this.ref.child('overrides').on('value', (snapshot) => {
+            let overrides = snapshot.val();
 
-        //     let mags = snapshot.val();
+            Object.entries(this.magnets).forEach(([pin, mag]) => {
+                mag.override = overrides[mag.location];
+            });
 
-        //     this.magnets[PIN_MAP['seattle']].db = mags['seattle'];
-        //     this.magnets[PIN_MAP['india']].db = mags['india'];
-        // });
+            // check to see if this update caused a solve
+            this.checkForSolvedState();
+        });
     }
 
     setupMagnet(location) {
@@ -73,7 +73,7 @@ module.exports = class MagnetController extends EventEmitter {
         //   e.g. false means there is a magnet, I actually want true to mean that
         mag.state = !newValue;
 
-        this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.state}, db => ${mag.db}`)
+        this.logger.log(`${this.logPrefix}[${pin}]: ${mag.location} => ${mag.state}, override => ${mag.override}`)
 
         // update database to match
         this.ref.child('magnets').child(mag.location).set(mag.state)
@@ -97,8 +97,12 @@ module.exports = class MagnetController extends EventEmitter {
     reset() {
         Object.entries(this.magnets).forEach(([pin, mag]) => {
             mag.state = false;
+            mag.override = false;
+            this.ref.child('overrides').child(mag.location).set(false)
         });
+
         this.solved = false;
+        this.ref.update({ solved: false });
 
         this.readAllCurrentMagnets();
     }
@@ -107,7 +111,7 @@ module.exports = class MagnetController extends EventEmitter {
         let allSolved = true;
 
         Object.entries(this.magnets).forEach(([pin, mag]) => {
-            allSolved &= mag.state;
+            allSolved &= mag.state || mag.override;
         });
 
         // much more terse way to represent this, but prefer clarity
