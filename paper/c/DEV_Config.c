@@ -258,8 +258,11 @@ static int DEV_Equipment_Testing(void)
 
 void DEV_GPIO_Init(void)
 {
+
 #ifdef RPI
-	EPD_RST_PIN     = 17;
+    // Original - version I had working in one-off pi
+    // EPD_RST_PIN     = 17;
+	EPD_RST_PIN     = 23;
 	EPD_DC_PIN      = 25;
 	EPD_CS_PIN      = 8;
 	EPD_BUSY_PIN    = 24;

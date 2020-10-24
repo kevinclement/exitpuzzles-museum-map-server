@@ -12,6 +12,7 @@
   [ ] reset dialog resets the device
   [ ] run reporting
 
+[ ] turn back on cabinet handler
 [ ] turn off system start of python service
   [ ] maybe rename source folder?
 
