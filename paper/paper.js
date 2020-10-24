@@ -1,5 +1,4 @@
-'use strict';
-
+const path = require('path');
 const ImageJS = require('imagejs');
 let bitmap = new ImageJS.Bitmap();
 var pixels = require('./pixels');
@@ -19,11 +18,11 @@ module.exports = class PaperDevice {
     async load() {
         // load the images and convert them to proper pixel arrays
         this.logger.log(this.logPrefix + 'Loading code.jpg...')
-        await bitmap.readFile('./images/code.jpg');
+        await bitmap.readFile(path.join(__dirname, '../images/code.jpg'));
         this.code = Buffer.from(pixels.getHexaPixelArray(bitmap));
 
         this.logger.log(this.logPrefix + 'Loading legend.jpg...');
-        await bitmap.readFile('./images/legend.jpg');
+        await bitmap.readFile(path.join(__dirname, '../images/legend.jpg'));
         this.legend = Buffer.from(pixels.getHexaPixelArray(bitmap));
 
         this.logger.log(this.logPrefix + 'Initializing e-paper display...');

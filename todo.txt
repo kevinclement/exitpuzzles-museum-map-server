@@ -1,10 +1,11 @@
 [ ] when I did a force solve for map, got a callback error in console
 
-[ ] turn off system start of python service
-  [ ] maybe rename source folder?
-[ ] check in to master for service
-[ ] refresh main service
-[ ] checkin master webapp
+[x] turn off system start of python service
+  [x] maybe rename source folder?
+[x] check in to master for service
+[x] refresh main service
+[x] checkin master webapp
+[ ] full reboot to confirm still working
 
 [ ] nit: cleanup old ops still hanging out in db
 [ ] nit: move legend image up?
