@@ -14,7 +14,7 @@ async function main () {
   // might want to turn this off while doing dev, so I have a flag for it
   let ENABLE_FIREBASE_LOGS = true;
   if (ENABLE_FIREBASE_LOGS) {
-      logger.enableFirebase(fb.db);
+    logger.enableFirebase(fb.db, 'museum/logs/map');
   }
 
   // track firebase connect and disconnects and log them so we can see how often it happens
