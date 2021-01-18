@@ -76,6 +76,7 @@ module.exports = class MapDevice {
         this.logger.log(this.logPrefix + ' resetting device state.')
         this.force = false;
         this.resetTimer = null;
+        this.paper.reset();
         this.displayLegend();
         this.magnets.reset();
     }

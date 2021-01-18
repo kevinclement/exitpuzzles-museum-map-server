@@ -16,6 +16,12 @@ module.exports = class PaperDevice {
     }
 
     async load() {
+        this.reset();
+    }
+
+    async reset() {
+        this.logger.log(this.logPrefix + 'Resetting paper device...')
+
         // load the images and convert them to proper pixel arrays
         this.logger.log(this.logPrefix + 'Loading code.jpg...')
         await bitmap.readFile(path.join(__dirname, '../images/code.jpg'));
