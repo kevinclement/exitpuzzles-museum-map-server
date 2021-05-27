@@ -48,7 +48,9 @@ module.exports = class PaperDevice {
         // micro-opt: let db update happen before triggering paper update since
         // it kind of hangs the device.  Ideally this would be a fork or something better
         setTimeout(() => {
+            waveshare7in5Driver.init();
             waveshare7in5Driver.display(this.code);    
+            waveshare7in5Driver.sleep();
         }, 0);
      }
  
@@ -64,7 +66,9 @@ module.exports = class PaperDevice {
         // micro-opt: let db update happen before triggering paper update since
         // it kind of hangs the device.  Ideally this would be a fork or something better
         setTimeout(() => {
+            waveshare7in5Driver.init();
             waveshare7in5Driver.display(this.legend);
+            waveshare7in5Driver.sleep();
         }, 0);
      }
 }
