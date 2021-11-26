@@ -34,6 +34,18 @@ module.exports = class CabinetManager extends Manager {
             });
         }
 
+        handlers['cabinet.ping'] = (s,cb) => {
+            // not sure if this needs to be a ping<PONG type interaction.  for now just send a status
+            // command and make sure it doesn't produce a write error.  need to get a repro to see if that
+            // can trap it.
+            this.write('status', err => {
+                if (err) {
+                    s.ref.update({ 'error': err });
+                }
+                cb()
+            });
+        }
+
         handlers['cabinet.reboot'] = (s,cb) => {
             this.forced = false
             this.write('reboot', err => {
